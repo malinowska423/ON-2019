@@ -4,8 +4,8 @@ type = Float32  #typ arytmetyki
 #wektory podane w zadaniu
 x = type[2.718281828, -3.141592654, 1.414213562, 0.5772156649, 0.3010299957]
 y = type[1486.2497, 878366.9879, -22.37492, 4773714.647, 0.000185049]
-
-
+    
+    
 #funkcje obliczające sumę   
 #metoda pierwsza ("w przód")
 function forwardMethod() 
@@ -76,7 +76,18 @@ function toBiggest()
 end
 
 #wyświetlenie wyników
+println("Float32: ")
 println("1: ", forwardMethod())
 println("2: ", backwardMethod())
 println("3: ", toSmallest())
 println("4: ", toBiggest())
+
+type = Float64
+x = type[2.718281828, -3.141592654, 1.414213562, 0.5772156649, 0.3010299957]
+y = type[1486.2497, 878366.9879, -22.37492, 4773714.647, 0.000185049]
+println("Float64: ")
+println("1: ", forwardMethod())
+println("2: ", backwardMethod())
+println("3: ", toSmallest())
+println("4: ", toBiggest())
+    
