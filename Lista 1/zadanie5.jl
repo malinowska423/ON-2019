@@ -1,27 +1,35 @@
 #Aleksandra Malinowska 244925
-type = Float64
+
+type = Float32  #typ arytmetyki
+#wektory podane w zadaniu
 x = type[2.718281828, -3.141592654, 1.414213562, 0.5772156649, 0.3010299957]
 y = type[1486.2497, 878366.9879, -22.37492, 4773714.647, 0.000185049]
+
+
+#funkcje obliczające sumę   
+#metoda pierwsza ("w przód")
 function forwardMethod() 
-    scalar = zero(type)
+    sum = zero(type) #wynik dodawania
     for i = 1:5
-        scalar += x[i] * y[i]
+        sum += x[i] * y[i]
     end
-    return scalar
+    return sum
 end
 
+#metoda druga ("w tył")
 function backwardMethod()
-    scalar = zero(type)
-    i=5
+    sum = zero(type) #wynik dodawania
+    i=5 #zmienna sterująca pętlą
     while i >= 1
-        scalar += x[i] * y[i]
+        sum += x[i] * y[i]
         i -= 1
     end
-    return scalar
+    return sum
 end
 
+#metoda trzecia
 function toSmallest()
-    sorted = Array{type}(undef, 5)
+    sorted = Array{type}(undef, 5)  #tablica z posortowanymi wartościami
     for i = 1:5
         sorted[i] = x[i] * y[i]
     end
@@ -30,8 +38,8 @@ function toSmallest()
     while i <= 5 && sorted[i] >= 0
         i += 1
     end
-    sumNeg = zero(type)
-    sumPos = zero(type)
+    sumNeg = zero(type) #suma liczb ujemnych
+    sumPos = zero(type) #suma liczb dodatnich
     for k = 1:(i-1)
         sumPos += sorted[k]
     end
@@ -43,8 +51,9 @@ function toSmallest()
     return (sumNeg + sumPos)
 end
 
+#metoda czwarta
 function toBiggest()
-    sorted = Array{type}(undef, 5)
+    sorted = Array{type}(undef, 5)  #tablica z posortowanymi wartościami
     for i = 1:5
         sorted[i] = x[i] * y[i]
     end
@@ -53,22 +62,21 @@ function toBiggest()
     while i <= 5 && sorted[i] < 0
         i += 1
     end
-    sumNeg = zero(type)
-    sumPos = zero(type)
+    sumNeg = zero(type) #suma liczb ujemnych
+    sumPos = zero(type) #suma liczb dodatnich
     j = i - 1
     while j >= 1
-        # println(sorted[j])
         sumNeg += sorted[j]
         j -= 1
     end
     for k = i:5
-        # println(sorted[k])
         sumPos += sorted[k] 
     end
     return (sumNeg + sumPos)
 end
 
-println(forwardMethod())
-println(backwardMethod())
-println(toSmallest())
-println(toBiggest())
+#wyświetlenie wyników
+println("1: ", forwardMethod())
+println("2: ", backwardMethod())
+println("3: ", toSmallest())
+println("4: ", toBiggest())
